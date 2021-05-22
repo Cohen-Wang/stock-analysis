@@ -7,6 +7,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
+import {noteError, noteSuccess} from "@/utils";
 
 @Component({
   components: {}
@@ -19,6 +20,18 @@ export default class App extends Vue {
   created(): void {
     // 1.设置主题色
     this.$store.dispatch('common/SET_CURRENT_THEME', this.theme)
+    // 2.监听网络
+    this.listenNetwork()
+  }
+
+  // 监听网络
+  listenNetwork(): void {
+    window.addEventListener('offline', () => {
+      noteError('网络已断开')
+    })
+    window.addEventListener('online',() => {
+      noteSuccess('网络已链接')
+    })
   }
 }
 </script>
