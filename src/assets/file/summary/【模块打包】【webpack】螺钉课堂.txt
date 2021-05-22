@@ -1,0 +1,1004 @@
+������ʦ��δ֪
+����ʱ�䣺2018��11��
+��ַ��https://study.163.com/course/courseMain.htm?courseId=1004960043
+�ܿ�ʱ��25��
+
+���鿴webpack��ʷ�汾��
+	npm view webpack versions // ע��versions�Ǹ���
+	
+����ʷ��
+	webpack-v1��2015�귢����֧��CMD��AMD��ͬʱӵ�зḻ��plugin��loader��webpack�𽥵õ��㷺Ӧ�á�
+
+	webpack-v2��2016.12�����������webpack1���ĸĽ�����֧��ES Module������ֱ�ӷ���ES Module֮���������ϵ����webpack1���뽫ES Moduleת����CommonJSģ��֮�󣬲���ʹ��webpack1������һ����������֮��webpack2֧��tree sharking����ES Module�����˼·�߶����ϡ�
+
+	webpack-v3��2017.6�����������webpack2���������ƽ�ȣ������µ����Դ�Χ��ES Module�������Scope Hoisting��Magic Comment��
+	
+	webpack-v4��2018.2������
+
++--------------------------------------------------------------------------------------------------------------------------
+|��1�Σ���װ�汾
++--------------------------------------------------------------------------------------------------------------------------
+���汾���ܡ�
+	��ǰ����3.0�����°汾4.0
+	
+��Ĭ�ϰ�װ���°汾����ȱ�㣺ÿ����Ŀ��webpack�ǲ�һ���ģ����Բ�Ҫȫ�ְ�װ��
+	npm install webpack -g
+
+����װָ���汾��
+	npm install -g webpack@3.10.0
+	
+�����ذ�װָ���汾��
+	��ĿĿ¼��
+	npm install webpack@3.10.0 --save-dev
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��2�Σ�����
++--------------------------------------------------------------------------------------------------------------------------
+�����ܡ�
+	�ִ�js��ģ������
+
+��nodejs��װ��
+	node -v
+	npm -v
+
+��ȫ�ְ�װ��
+	npm install -g webpack
+	webpack --help
+	
+�����ذ�װ��
+	1.cmd
+	2.mkdir demo ��������ĿĿ¼��
+	3.npm init -y ������package.json��
+	4.npm install webpack@3.10.0 --save-dev
+	
+
++--------------------------------------------------------------------------------------------------------------------------
+|��3�Σ����������
++--------------------------------------------------------------------------------------------------------------------------
+������webpack.config.js��
+
+	const path = require('path');// nodejs�Դ���
+	
+	module.exports = {
+		// ����ļ�
+		��entry��: './src/index.ts',
+		
+		// ���Ŀ¼�������js�ļ���
+		��output��: {
+			path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+			filename: 'app.js', // ������ļ�
+		}
+	}
+	
+���ջ�����app.js�ļ���Ҳ����index.html�ļ���Ҫ�����롿���ļ�������Щ�����ǿ���ͨ��webpack�Ĳ����ɵģ���html-webpack-plugin��
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��4�Σ�ʲô�ǲ��
++--------------------------------------------------------------------------------------------------------------------------
+����װ�����
+	npm install html-webpack-plugin --save-dev
+
+����������
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			
+			��
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			��
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��5�Σ�devServer
++--------------------------------------------------------------------------------------------------------------------------
+�����ܡ�
+	�򵥵�web�������������ܹ�ʵʱ���¼��أ�live reloading�����������ʱ���Զ��ļ��ء�
+	
+����װ��
+	npm install webpack-dev-server --save-dev
+	
+�����䡿
+	����binĿ¼������ļ�����������
+	
+��������
+	package.json
+		'script': {
+			'start': './node_modules/.bin/webpack-dev-server',// ����Ӧ����������������nodejs ���ļ��ķ�ʽ������д����������
+			��'start': 'webpack-dev-server'��,
+		}
+		
+��ʹ�á�		
+	ֱ�� npm start��������npm run start
+	
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			
+			��
+			devServer: {��������ڴ�ģ��������������ļ�������û��index.html�ļ���Ҳ������ʾ����
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			}
+			��
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��6�Σ���css-loader�� ��style-loader��
++--------------------------------------------------------------------------------------------------------------------------
+��ʲô��loader��
+	webpack����ֻ���javascript���﷨������es5���﷨�����Ҫ����es6���﷨����Ҫת������
+	
+�����ӡ�	
+	// index.ts ����
+	import 'index.css';// �����޷���������Ҫcss-loader����css-loader����webpack֪����ô����css�ļ���
+
+����װ��
+	npm install ��css-loader�� --save-dev
+	
+	npm install ��style-loader�� --save-dev // style-loader�����ã����Ѿ�����õ�css������뵽html��
+
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			
+			��
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],// ��ע���Ⱥ������ǴӺ���ǰ�����˳��
+					}
+				]
+			}
+			��
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��7�Σ�ʹ��ͼƬ����file-loader��
++--------------------------------------------------------------------------------------------------------------------------
+����������ͼƬ��ʱ�򣬴���ᱨ��
+	// index.css
+	body {
+		background: url('../abc.jpg');
+	}
+	
+	// index.ts
+	import 'index.css';
+
+����װ��
+	npm install ��file-loader�� --save-dev
+	
+�����á�	
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					��
+					{
+						test: /\.jpg$/,
+						use: ['file-loader'],
+					}
+					��
+				]
+			}
+		}	
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��8��: file-loader��������
++--------------------------------------------------------------------------------------------------------------------------
+����ͼƬ���Ƶ����Ŀ¼��dist���С�
+
+�������ͼƬ���������ˡ�
+	nodeing.jpg => f87923rbih42h958h3g93h9tnt536.jpg
+	
+	
++--------------------------------------------------------------------------------------------------------------------------
+|��9�Σ�֧�ֶ���ͼƬ����
++--------------------------------------------------------------------------------------------------------------------------
+	// ֱ������ͼƬ
+	// index.ts
+	import imgSrc from './images/nodeing.jpg';
+	console.log(imgSrc); // ���������ͼƬ��·����
+	
+��ƥ�����ͼƬ��
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					{
+						test: ��/\.(jpg|png|webp|gif|bmp})$/��,// ����ͼƬ��ʽ
+						use: ['file-loader'],
+					}
+				]
+			}
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��10�Σ���url-loader��
++--------------------------------------------------------------------------------------------------------------------------
+�����á�
+	��ͼƬ�����ã��ӡ���ַ����Ϊ�ˡ�base64��
+	
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						
+						use: [��'url-loader'��],
+						����
+						��
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,��ͼƬ����8291�Ͳ�ȥת�������С�ڣ���ת��Ϊbase64��
+							}
+						}]
+						��
+					}
+				]
+			}
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��11�Σ�ʹ������ ��font-loader��
++--------------------------------------------------------------------------------------------------------------------------
+����װ��
+	npm install ��font-awesome�� --save-dev
+	
+	npm install ��file-loader�� --save-dev
+	
+��ʹ�á�
+	// index.ts
+	import 'font-awesome/css/font-awesomee.css
+	
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,
+							}
+						}]
+					},
+					��
+					{
+						test: /\.(otf|eot|svg|ttf|woff|woff2})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'file-loader',
+							use: ['file-loader'],
+						}]
+					},
+					��
+				]
+			}
+		}	
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��12�Σ�babel
++--------------------------------------------------------------------------------------------------------------------------
+�����á�
+	babel��һ��js�����������Խ�es6ת��Ϊes5
+	
+����װ��
+	npm install babal-cli --save-dev
+
+��ʹ�á�
+	���� ��.babelrc���ļ�
+	
+	"build": "babel index.ts"
+	npm run build
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��13�Σ�������� babel���ڲ��������ṩһЩ��չ����
++--------------------------------------------------------------------------------------------------------------------------
+��transform-es2015-arrow-functions����es6��������תes5������ () => {} ת function
+����װ��
+	npm install babel-plugin-transform-es2015-arrow-functions --save-dev
+	
+�����á�
+	// .babelrc
+	{
+		"plugin": [��"transform-es2015-arrow-functions"��],
+	}
+	
+��transform-es2015-classes��:es6�ġ��ࡿתes5����
+����װ��
+	npm install babel-plugin-transform-es2015-classes --save-deb
+	
+�����á�	
+	// .babelrc
+	{
+		"plugin": ["transform-es2015-arrow-functions", ��"transform-es2015-classes"��],
+	}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��14�Σ�babel�ġ�preset��
++--------------------------------------------------------------------------------------------------------------------------
+�����á�
+	Ϊ��һ���ԵĽ�es6���﷨תΪes5���﷨��������дʲô�﷨���ٲ���һ�β����
+	����ʹ�ñ��˷�װ���˵ģ��������С�����Ĳ����
+	
+����װ��
+	npm install babel-cli ��babel-preset-es2015�� --save-dev  
+
+�����á�	
+	// .babelrc
+	{
+		��"preset": ["es2015"]��,
+	}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��15�Σ�webpack��babel
++--------------------------------------------------------------------------------------------------------------------------
+��babel-core����babel�ĺ��ĵ�api������es6�﷨
+
+��babel-loader������es6���﷨�����babel-core������
+
+����װ��
+	npm install babel-core --save-dev
+	
+	npm install babel-loader --save-dev
+	
+	npm install babel-preset-es2015 --save-dev ���� npm install babel-preset-env --save-dev
+	
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				})
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,
+							}
+						}]
+					},
+					{
+						test: /\.(otf|eot|svg|ttf|woff|woff2})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'file-loader',
+							use: ['file-loader'],
+						}]
+					},
+					��
+					{
+						test: /\.js$/,
+						use: ['babel-loader'],
+						exclude: path.resolve(__dirname, 'node_modules'),// ���ų�node_modules�ļ��µ�js�ļ�����Ȼ�ٶȷǳ�������ΪҪ��������js�ļ�����
+					}
+					��
+				]
+			}
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��16�Σ�·�����׼��
++--------------------------------------------------------------------------------------------------------------------------
+�������ļ�·����
+	����ʱ���������ݷŵ�src�ļ�������
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��17�Σ�js�ļ���������clean-webpack-plugin
++--------------------------------------------------------------------------------------------------------------------------
+���޸�����ļ����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			��entry: './src/assets/js/index.ts',��
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+
+			...
+		}
+
+���޸ĳ����ļ����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/assets/js/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, '��dist/assets��'),// Ŀ¼�ľ���·��
+				filename: '��js/app.js��', // ������ļ�
+			},
+			
+			...
+		}
+
+��clean-webpack-plugin��
+����װ��
+	npm install clean-webpack-plugin --save-dev
+	
+��ʹ�á������á�	
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		��const  { CleanWebpackPlugin } = require('clean-webpack-plugin');��
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/assets/js/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist/assets'),// Ŀ¼�ľ���·��
+				filename: 'js/[name].bundlejs', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				}),
+				
+				��new CleanWebpackPlugin(['dist']),��
+			],
+			...
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��18�Σ�html��ͼƬ������ķ�����
++--------------------------------------------------------------------------------------------------------------------------
+������index.html�ļ�·�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		const  { CleanWebpackPlugin } = require('clean-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/assets/js/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist/assets'),// Ŀ¼�ľ���·��
+				filename: 'js/app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: '��../��index.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				}),
+				
+				new CleanWebpackPlugin(['dist']),
+			],
+			...
+		}
+
+��ͼƬ�������·�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		const  { CleanWebpackPlugin } = require('clean-webpack-plugin');
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				}),
+				new CleanWebpackPlugin(['dist']),
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						use: ['style-loader', 'css-loader'],
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,
+								��name: '��images/��[name].[hash:8].[ext]',��// ext����ʾ��׺
+							}
+						}]
+					},
+					{
+						test: /\.(otf|eot|svg|ttf|woff|woff2})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'file-loader',
+							// use: ['file-loader'],
+							options: {
+								��name: 'fonts/[name].[hash:8].[ext]',��
+							}
+						}]
+					},
+					{
+						test: /\.js$/,
+						use: ['babel-loader'],
+						exclude: path.resolve(__dirname, 'node_modules'),
+					}
+				]
+			}
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��19�Σ�css�ļ��ķ�����
++--------------------------------------------------------------------------------------------------------------------------
+�����á�
+	֮ǰ�Ĵ�������css�ļ������ݣ������bundle.js�ļ��С������ǲ���ϣ����ô����
+	
+����װ��
+	npm install extract-text-webpack-plugin --save-dev
+	
+�����á�	
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		const  { CleanWebpackPlugin } = require('clean-webpack-plugin');
+		��const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');��
+		��const extractcss = new ExtractTextWebpackPlugin({
+			filename: 'assets/css/index.css',// index.css -> ����������ļ���
+		});��
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				}),
+				new CleanWebpackPlugin(['dist']),
+				��extractcss��
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						// use: ['style-loader', 'css-loader'],
+						��
+						use: extractcss.extract({
+							fallback: 'style-loader',
+							use: ['css-loader'],
+						})
+						��
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,
+								name: 'images/[name].[hash:8].[ext]',// ext����ʾ��׺
+							}
+						}]
+					},
+					{
+						test: /\.(otf|eot|svg|ttf|woff|woff2})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'file-loader',
+							// use: ['file-loader'],
+							options: {
+								name: 'fonts/[name].[hash:8].[ext]',
+							}
+						}]
+					},
+					{
+						test: /\.js$/,
+						use: ['babel-loader'],
+						exclude: path.resolve(__dirname, 'node_modules'),
+					}
+				]
+			}
+		}
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��20��
++--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��21��
++--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��22��
++--------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��23�Σ�webpack4.x���ò���
++--------------------------------------------------------------------------------------------------------------------------
+����װ��
+	npm install webpack^4.0.0 --save-dev
+
+	npm install ��webpack-cli@3.1.2�� --save-dev  // �����밲װ��3.0��û�С�
+
+������
+	������Ҫwebpack.config.js������������
+	�ļ������ķ�ʽ��ΪnodeJS�ġ�module.exports��������ķ�ʽ��Ϊ let a = ��require('./a.js')��;
+	
+������ �������� �� ����������	
+	����������development����������ᱻѹ�������벻�ᱻѹ����
+	����������production�����������ղ�Ʒ��ֻ��һ�У����ұ�����ֻ��һ����ĸ�����ǵ��ʣ�
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��24�Σ���������������������webpack3.x���������ȫ�����ǿ�����������û�б�ѹ���ġ�
++--------------------------------------------------------------------------------------------------------------------------
+��npx��
+	npx���õİ�ִ��������Ҫnpm5.2.0����֧��
+	
+	��npx webpack === npm run dev��
+	
+	"dev": "webpack --mode development"
+
+
++--------------------------------------------------------------------------------------------------------------------------
+|��25�Σ�webpack4.x���Զ�������
++--------------------------------------------------------------------------------------------------------------------------
+�����á�
+	webpack.config.js
+		// ������
+		const HtmlWebpackPlugin = require('html-webpack-plugin');
+		const  { CleanWebpackPlugin } = require('clean-webpack-plugin');
+		const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+		const extractcss = new ExtractTextWebpackPlugin({
+			filename: 'assets/css/index.css',// index.css -> ����������ļ���
+		});
+		// nodeJs�Դ�ģ��
+		const path = require('path');// nodejs�Դ���
+		
+		module.exports = {
+			// ����ļ�
+			entry: './src/index.ts',
+			
+			// ���Ŀ¼�������js�ļ���
+			output: {
+				path: path.resolve(__dirname, 'dist'),// Ŀ¼�ľ���·��
+				filename: 'app.js', // ������ļ�
+			},
+			plugins: [
+				new HtmlWebpackPlugin({
+					filename: 'main.html',// ָ�����������html�ļ������֣�Ĭ�ϣ�index.html
+					template: 'src/index.html',// ָ��һ��htmlģ�壬Ҳ����������Ҫ��html�ļ��������
+				}),
+				new CleanWebpackPlugin(['dist']),
+				extractcss
+			],
+			devServer: {
+				open: true,// ������npm start��ֱ�Ӵ򿪣��Զ��򿪣���Ҫ�ֶ�����localhost:8080��
+				port: 8080,// �޸Ķ˿�
+				contentBase: './dist',// �޸ķ��������ʵĸ�Ŀ¼��Ĭ�ϣ�'./'
+			},
+			module: {
+				rules: [
+					{
+						test: /\.css$/,// ƥ��.css�ļ�
+						// use: ['style-loader', 'css-loader'],
+						use: extractcss.extract({
+							fallback: 'style-loader',
+							use: ['css-loader'],
+						})
+					},
+					{
+						test: /\.(jpg|png|webp|gif|bmp})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'url-loader',
+							options: {
+								limit: 8192,
+								name: 'images/[name].[hash:8].[ext]',// ext����ʾ��׺
+							}
+						}]
+					},
+					{
+						test: /\.(otf|eot|svg|ttf|woff|woff2})$/,// ����ͼƬ��ʽ
+						use: [{
+							loader: 'file-loader',
+							// use: ['file-loader'],
+							options: {
+								name: 'fonts/[name].[hash:8].[ext]',
+							}
+						}]
+					},
+					{
+						test: /\.js$/,
+						use: ['babel-loader'],
+						exclude: path.resolve(__dirname, 'node_modules'),
+					}
+				]
+			}
+		}
+
+
+���ܽ᡿
+	webpack��ѧϰ�ѵ���ʵ���ܱ߰���֪ʶ�ǳ��ĸ��ӡ����磺���������ָ��κϲ�ģ�飬����Զ�ˢ�£����������Ч�飬����Զ�������
+	���ĸ��entry��output��module��plugins��loader��
+
