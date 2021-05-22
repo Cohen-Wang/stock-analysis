@@ -7,7 +7,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Getter } from 'vuex-class'
-import {noteError, noteSuccess} from "@/utils";
 
 @Component({
   components: {}
@@ -27,10 +26,10 @@ export default class App extends Vue {
   // 监听网络
   listenNetwork(): void {
     window.addEventListener('offline', () => {
-      noteError('网络已断开')
+      (this as any).$noteError('网络已断开')
     })
     window.addEventListener('online',() => {
-      noteSuccess('网络已链接')
+      (this as any).$noteSuccess('网络已链接')
     })
   }
 }

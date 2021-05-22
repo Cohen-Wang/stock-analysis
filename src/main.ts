@@ -29,6 +29,13 @@ AOS.init()
 import moment from 'moment'
 Vue.prototype.$moment = moment
 
+// 封装通知
+import { noteSuccess, noteInfo, noteWarn, noteError } from '@/utils/index.ts'
+Vue.prototype.$noteSuccess = noteSuccess
+Vue.prototype.$noteInfo = noteInfo
+Vue.prototype.$noteWarn = noteWarn
+Vue.prototype.$noteError = noteError
+
 // 常量配置
 import constant from '@/constant/index'
 Vue.prototype.$constant = constant
