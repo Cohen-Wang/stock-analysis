@@ -6,10 +6,10 @@
           <span class="text-blue">{{ navigatorAppVersion }}</span>
         </a-descriptions-item>
         <a-descriptions-item :span="1" label="当前浏览器IP">
-          <span class="text-blue">{{ navigatorAppVersion }}</span>
+          <span class="text-blue">{{ IPInfo['cip'] || `未知` }}</span>
         </a-descriptions-item>
-        <a-descriptions-item :span="1" label="当前浏览器IP">
-          <span class="text-blue">{{ navigatorAppVersion }}</span>
+        <a-descriptions-item :span="1" label="当前浏览器地址">
+          <span class="text-blue">{{ IPInfo['cname'] || `未知` }}</span>
         </a-descriptions-item>
         <a-descriptions-item :span="1" label="当前下载速度">
           <span class="text-blue">{{ `${+(networkSpeed.toFixed(2))} KB/s` }}</span>
@@ -41,6 +41,7 @@ export default class LocalInfo extends Vue {
   @Provide() navigatorAppVersion: string = '' // 浏览器内核
   @Provide() networkSpeed: number = 0 // 网速
   @Provide() localStorageInfo: number | string = 0 // 网速
+  @Provide() IPInfo: any = {} // IP
 
   created(): void {
     this.getNavigatorInfo()
@@ -77,7 +78,7 @@ export default class LocalInfo extends Vue {
     let url = `https://upload.wikimedia.org/wikipedia/commons/5/51/Google.png?id=${+new Date()}`
     let xhr = new XMLHttpRequest()
     let _this = this
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState === 2) {
         startTime = Date.now()
       }
