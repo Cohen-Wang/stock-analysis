@@ -46,7 +46,7 @@ export default class LocalInfo extends Vue {
   created(): void {
     this.getNavigatorInfo()
     this.getNetworkSpeed()
-    this.getLocalStorage()
+    // this.getLocalStorage()
   }
 
   // 获取内核信息

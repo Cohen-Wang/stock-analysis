@@ -22,9 +22,9 @@ module.exports = {
     before: app => {}
   },
   // 生产环境sourceMap
-  productionSourceMap: false,
+  productionSourceMap: process.env.NODE_ENV !== 'production',
   // 基本路径，vue.cli 3.3 以前请使用baseUrl
-  publicPath: process.env.NODE_ENV === 'production' ? '/stock-analysis/' : './', // stock-analysis和git仓库一个名字
+  publicPath: `/stock-analysis/`, // stock-analysis和git仓库一个名字
   // 输出文件目录
   outputDir: 'docs',
   // 用于嵌套生成的静态资源（js, css, img, fonts）的目录
