@@ -133,13 +133,18 @@ export default class NavHeader extends Vue {
   }
 
   logout(): void {
-    (this as any).$apiServer.login.logout().then((res: any) => {
-      // 清除token
-      this.$store.dispatch('user/REMOVE_USER_INFO')
-      this.$store.dispatch('token/REMOVE_TOKEN')
-      // 跳转login
-      this.$router.push('/login')
-    })
+    // (this as any).$apiServer.login.logout().then((res: any) => {
+    //   // 清除token
+    //   this.$store.dispatch('user/REMOVE_USER_INFO')
+    //   this.$store.dispatch('token/REMOVE_TOKEN')
+    //   // 跳转login
+    //   this.$router.push('/login')
+    // })
+    // 清除token
+    this.$store.dispatch('user/REMOVE_USER_INFO')
+    this.$store.dispatch('token/REMOVE_TOKEN')
+    // 跳转login
+    this.$router.push('/login')
   }
 }
 
