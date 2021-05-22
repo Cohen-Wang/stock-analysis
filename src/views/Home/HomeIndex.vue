@@ -169,13 +169,25 @@
     </div>
 
     <!-- 区域4 -->
-    <div class="padding-sm">
+    <div class="padding-lr-sm padding-top-sm">
       <div class="bg-white">
         <div class="border-bottom border-solid border-gray">
           <main-title text="事件数据"/>
         </div>
         <div>
           <div ref="lineGraph4" style="height: 500px;"/>
+        </div>
+      </div>
+    </div>
+
+    <!-- 本地信息 -->
+    <div class="padding-sm">
+      <div class="bg-white">
+        <div class="border-bottom border-solid border-gray">
+          <main-title text="本地信息"/>
+        </div>
+        <div>
+          <local-info/>
         </div>
       </div>
     </div>
@@ -188,10 +200,12 @@ import DataSet from '@antv/data-set'
 import { Chart } from '@antv/g2'
 // 组件
 import MainTitle from '@/components/MainTitle.vue'
+import LocalInfo from '@/views/Home/components/LocalInfo.vue'
 
 @Component({
   components: {
-    MainTitle
+    MainTitle,
+    LocalInfo
   }
 })
 
