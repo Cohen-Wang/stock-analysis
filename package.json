@@ -1,12 +1,12 @@
 {
-  "name": "workbench-ts",
+  "name": "stock-analysis",
   "version": "0.1.0",
-  "description": "在线考试",
+  "description": "股票分析",
   "private": true,
   "scripts": {
     "dev": "npm run serve",
     "serve": "vue-cli-service serve --mode dev",
-    "build": "vue-cli-service build --mode prod --profile --json > stats.json",
+    "build": "vue-cli-service build --mode dev --profile --json > stats.json",
     "serve-test": "vue-cli-service serve --mode test",
     "build-test": "vue-cli-service build --mode test",
     "serve-prod": "vue-cli-service serve --mode prod",
