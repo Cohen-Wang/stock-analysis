@@ -138,7 +138,7 @@ export default class Login extends Vue {
     // }).finally(() => {
     //   this.isLoading = false
     // })
-    alert('dist')
+    alert('docs')
     if (this.form.password === '123456') {
       /**
        * 模拟后台返回数据
