@@ -1,4 +1,6 @@
-# workbench-ts
+# stock-analysis
+
+## 分析股票的数据平台
 
 ## Project setup
 ```
