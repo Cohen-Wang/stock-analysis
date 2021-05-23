@@ -14,7 +14,7 @@
               <a-icon type="down"/>
             </a>
             <a-menu slot="overlay">
-              <a-menu-item><a href="javascript:void(0)" @click="$router.push('/personal-center')">个人中心</a></a-menu-item>
+              <a-menu-item><a href="javascript:void(0)" @click="$router.push('/personal/personal-center')">个人中心</a></a-menu-item>
               <a-menu-item><a href="javascript:void(0)" @click="showIndividuationDialog">个性化</a></a-menu-item>
               <a-menu-divider/>
               <a-menu-item><a href="javascript:void(0)" @click="gotoMessage">个人消息（23）</a></a-menu-item>

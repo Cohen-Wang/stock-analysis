@@ -1,5 +1,5 @@
 <template>
-  <div class="padding-lr-sm padding-top-sm">
+  <div>
     <a-tabs default-active-key="1"
             size="small"
             :tab-position="tabPosition">

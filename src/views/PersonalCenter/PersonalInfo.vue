@@ -67,7 +67,7 @@ export default class PersonalInfo extends Vue {
 
 <style lang="scss" scoped>
   .main-height {
-    height: calc(100vh - 130px);
+    height: calc(100vh - 187px);
     overflow-y: auto;
   }
 </style>
