@@ -3,47 +3,77 @@ import { notification } from 'ant-design-vue'
 /**
  * 成功通知
  * @param message
+ * @param description
+ * @param duration
  */
-export const noteSuccess = (message: string): void => {
+const noteSuccess = (message: string = '', description: string = '', duration: number = 6): void => {
   notification.success({
     message,
     description: '',
-    duration: 4
+    duration
   })
 }
 
 /**
  * 信息通知
  * @param message
+ * @param description
+ * @param duration
  */
-export const noteInfo = (message: string): void => {
+const noteInfo = (message: string = '', description: string = '', duration: number = 6): void => {
   notification.info({
     message,
-    description: '',
-    duration: 4
+    description,
+    duration
   })
 }
 
 /**
  * 警告通知
  * @param message
+ * @param description
+ * @param duration
  */
-export const noteWarn = (message: string): void => {
+const noteWarn = (message: string = '', description: string = '', duration: number = 6): void => {
   notification.warning({
     message,
-    description: '',
-    duration: 4
+    description,
+    duration
   })
 }
 
 /**
  * 错误通知
  * @param message
+ * @param description
+ * @param duration
  */
-export const noteError = (message: string): void => {
+const noteError = (message: string = '', description: string = '', duration: number = 6): void => {
   notification.error({
     message,
-    description: '',
-    duration: 4
+    description,
+    duration
   })
+}
+
+/**
+ * 默认通知
+ * @param message
+ * @param description
+ * @param duration
+ */
+const noteDefault = (message: string = '', description: string = '', duration: number = 6): void => {
+  notification.open({
+    message,
+    description,
+    duration
+  })
+}
+
+export default {
+  success: noteSuccess,
+  info: noteInfo,
+  warn: noteWarn,
+  error: noteError,
+  default: noteDefault
 }

@@ -26,10 +26,10 @@ export default class App extends Vue {
   // 监听网络
   listenNetwork(): void {
     window.addEventListener('offline', () => {
-      (this as any).$noteError('网络已断开')
+      (this as any).$note.error('网络已断开', '', 0)
     })
     window.addEventListener('online',() => {
-      (this as any).$noteSuccess('网络已链接')
+      (this as any).$note.success('网络已链接', '', 0)
     })
   }
 }
