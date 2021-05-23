@@ -1,6 +1,6 @@
 <template>
   <a-layout>
-    <a-layout-sider v-model="collapsed">
+    <a-layout-sider v-model="collapsed" class="sidebar-height">
       <!-- 标题 -->
       <div class="flex justify-center">
         <span class="text-grey text-bold text-lg" style="line-height: 64px;">
@@ -34,7 +34,7 @@
           </a-breadcrumb>
         </div>
         <!-- 主体内容 -->
-        <router-view/>
+        <router-view class=""/>
       </a-layout-content>
     </a-layout>
   </a-layout>
@@ -93,4 +93,9 @@ export default class Layout extends Vue {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .sidebar-height {
+    height: 100vh;
+    overflow-y: auto;
+  }
+</style>

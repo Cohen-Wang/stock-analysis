@@ -1,5 +1,5 @@
 <template>
-  <div class="padding-sm">
+  <div>
     <a-tabs type="card"
             default-active-key="1"
             tab-position="top">
@@ -48,7 +48,7 @@ export default class WorkspaceIndex extends Vue {
 
 <style lang="scss" scoped>
   /deep/ .workspace-height {
-    height: calc(100vh - 128px);
+    height: calc(100vh - 173px);
     overflow-y: auto;
   }
 

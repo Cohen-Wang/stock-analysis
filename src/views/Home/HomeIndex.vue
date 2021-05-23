@@ -1,7 +1,7 @@
 <template>
   <div class="main-content">
     <!-- 卡片区域 -->
-    <div class="padding-lr-sm padding-top-sm">
+    <div>
       <a-row :gutter="12">
         <a-col :span="6">
           <div>
@@ -91,7 +91,7 @@
     </div>
 
     <!-- 区域2 -->
-    <div class="padding-lr-sm padding-top-sm">
+    <div class="padding-top-sm">
       <div class="bg-white">
         <a-row>
           <a-col :span="16">
@@ -130,7 +130,7 @@
     </div>
 
     <!-- 区域3 -->
-    <div class="padding-lr-sm padding-top-sm">
+    <div class="padding-top-sm">
       <a-row :gutter="12">
         <a-col :span="12">
           <div class="bg-white">
@@ -169,7 +169,7 @@
     </div>
 
     <!-- 区域4 -->
-    <div class="padding-lr-sm padding-top-sm">
+    <div class="padding-top-sm">
       <div class="bg-white">
         <div class="border-bottom border-solid border-gray">
           <main-title text="事件数据"/>
@@ -181,7 +181,7 @@
     </div>
 
     <!-- 本地信息 -->
-    <div class="padding-sm">
+    <div class="padding-top-sm">
       <div class="bg-white">
         <div class="border-bottom border-solid border-gray">
           <main-title text="本地信息"/>
@@ -704,7 +704,7 @@ export default class Home extends Vue {
 
 <style lang="scss" scoped>
   .main-content {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 133px);
     overflow-y: auto;
   }
 

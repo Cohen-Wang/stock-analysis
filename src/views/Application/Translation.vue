@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <a-input v-model="text"/>
-    <a-button type="primary" @click="onTranslate">翻译</a-button>
-    <a-textarea v-model="translatedText"
-                placeholder="翻译结果"
-                disabled
-                :auto-size="{ minRows: 3, maxRows: 5 }"/>
+  <div class="main-height bg-white">
+    <div class="padding-lr-lg padding-tb border-bottom border-solid border-gray">
+      <a-input v-model="text" style="width: 250px;"/>
+      <a-button type="primary" @click="onTranslate">翻译</a-button>
+    </div>
+    <div class="padding-lr-lg padding-tb">
+      <a-textarea v-model="translatedText"
+                  placeholder="翻译结果"
+                  disabled
+                  :auto-size="{ minRows: 8, maxRows: 8 }"/>
+    </div>
   </div>
 </template>
 

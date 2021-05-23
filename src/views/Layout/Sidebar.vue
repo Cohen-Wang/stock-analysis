@@ -3,6 +3,7 @@
     <a-menu mode="inline"
             theme="dark"
             :default-selected-keys="[$route.fullPath]"
+            :default-open-keys="[$route.matched[0].path]"
             @click="handleClick">
       <template v-for="item in this.routes">
         <template v-if="item.meta.isShow">
@@ -15,7 +16,7 @@
           </a-menu-item>
           <!-- 多个元素 -->
           <a-sub-menu v-else
-                      :key="item.name">
+                      :key="item.path">
             <span slot="title">
               <a-icon v-if="item.meta.icon"
                       :type="item.meta.icon"/>
@@ -78,6 +79,7 @@ export default class Sidebar extends Vue {
   @Getter('router/routes') routes: any
 
   handleClick(option: any): void {
+    console.log(this.$route)
     const { key } = option
     this.$router.push(key)
   }
