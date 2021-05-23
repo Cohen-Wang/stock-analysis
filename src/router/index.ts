@@ -21,13 +21,14 @@ export const asyncRouterMap: Array<RouteConfig> = [
     path: '/',
     name: 'Layout',
     component: Layout,
-    meta: { isShow: true, title: '首页', icon: 'home' },
+    meta: { isShow: true },
     redirect: '/home',
     children: [
       {
         path: '/home',
         name: 'home',
-        component: () => import('@/views/Home/HomeIndex.vue')
+        component: () => import('@/views/Home/HomeIndex.vue'),
+        meta: { isShow: true, title: '首页', icon: 'home' },
       }
     ]
   },
@@ -35,14 +36,14 @@ export const asyncRouterMap: Array<RouteConfig> = [
     path: '/workspace',
     name: 'workspace',
     component: Layout,
-    meta: { isShow: true, title: '工作台', icon: 'solution' },
+    meta: { isShow: true },
     redirect: '/workspace/workspace-index',
     children: [
       {
         path: '/workspace/workspace-index',
         name: 'workspace',
         component: () => import('@/views/Workspace/WorkspaceIndex.vue'),
-        meta: { isShow: true, title: '工作台首页', icon: 'solution' }
+        meta: { isShow: true, title: '工作台', icon: 'solution' }
       }
     ]
   },

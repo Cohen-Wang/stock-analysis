@@ -11,8 +11,8 @@
           <a-menu-item v-if="item.children.length === 1"
                        :key="item.children[0].path"
                        titleClick="handleTitleClick">
-            <a-icon v-if="item.meta.icon" :type="item.meta.icon"/>
-            <span>{{ item.meta.title }}</span> <!-- 必须有span包裹，否则字无法收缩 -->
+            <a-icon v-if="item.children[0].meta.icon" :type="item.children[0].meta.icon"/>
+            <span>{{ item.children[0].meta.title }}</span> <!-- 必须有span包裹，否则字无法收缩 -->
           </a-menu-item>
           <!-- 多个元素 -->
           <a-sub-menu v-else
@@ -79,7 +79,6 @@ export default class Sidebar extends Vue {
   @Getter('router/routes') routes: any
 
   handleClick(option: any): void {
-    console.log(this.$route)
     const { key } = option
     this.$router.push(key)
   }
