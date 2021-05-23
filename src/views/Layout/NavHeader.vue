@@ -1,34 +1,12 @@
 <template>
   <div>
-    <div class="flex" :style="{ backgroundColor: theme ==='dark' ? '#001529' : '#FFFFFF' }">
-      <div class="flex justify-center" style="width: 200px;">
-        <div class="flex flex-direction justify-center"
-             :class="theme ==='dark' ? 'text-white' : 'text-black'"
-             style="line-height: 20px;">
-          <div class="text-df">{{ title }}</div>
-          <div class="flex justify-center text-xs">{{ version }}</div>
-        </div>
-      </div>
-      <div class="flex-1 flex justify-between">
+    <div class="flex justify-between padding-lr-sm">
         <!-- 左边 -->
         <div>
-          <a-menu mode="horizontal"
-                  :theme="theme"
-                  :selected-keys="[currentNav]"
-                  style="height: 64px; line-height: 64px;">
-            <template v-for="item in routes.find(e => e.name === 'Layout').children">
-              <a-menu-item v-if="item.meta && item.meta.isShow"
-                           :key="item.name"
-                           @click="onMenuClick">
-                <a-icon v-if="item.meta && item.meta.icon"
-                        :type="item.meta.icon"/>
-                {{ item.meta ? item.meta.title : '' }}
-              </a-menu-item>
-            </template>
-          </a-menu>
+          <a-button :icon="collapsed ? 'menu-unfold' : 'menu-fold'" @click="setCollapsed"/>
         </div>
         <!-- 右边 -->
-        <div class="padding-right-sm">
+        <div>
           <a-dropdown>
             <a class="ant-dropdown-link margin-right-lg"
                @click="e => e.preventDefault()">
@@ -48,7 +26,6 @@
             <a-avatar shape="square" :src="userInfo.avatarUrl"/>
           </a-badge>
         </div>
-      </div>
     </div>
 
     <!-- 组件：个性化对话框 -->
@@ -77,8 +54,6 @@ export default class NavHeader extends Vue {
   @Getter('user/userInfo') userInfo: any
   @Getter('common/theme') theme: any
   @Getter('common/collapsed') collapsed: any
-  @Getter('common/currentNav') currentNav: any
-  @Getter('router/routes') routes: any
   @Provide() title: string = process.env.VUE_APP_TITLE
   @Provide() version: string = process.env.VUE_APP_VERSION
   @Provide() duration: number = 5 * 1000
@@ -96,29 +71,22 @@ export default class NavHeader extends Vue {
     }, _this.duration)
   }
 
-  // 导航条点击
-  onMenuClick(option: any): void {
-    (this as any).$router.push(`/${option.key}`)
-    this.$store.dispatch('common/SET_CURRENT_NAV', option.key)
+  // 设置折叠
+  setCollapsed(): void {
+    this.$store.dispatch('common/SET_CURRENT_COLLAPSED', !this.collapsed)
   }
 
-  /**
-   * 跳转消息中心
-   */
+  // 跳转消息中心
   gotoMessage(): void {
     this.$message.info('暂无此功能')
   }
 
-  /**
-   * 个性化弹窗
-   */
+  // 个性化弹窗
   showIndividuationDialog(): void {
     (this as any).$refs['IndividuationModal'].showModal()
   }
 
-  /**
-   * 退出登录
-   */
+  // 退出登录
   onLogout(): void {
     const _this = this
     this.$confirm({

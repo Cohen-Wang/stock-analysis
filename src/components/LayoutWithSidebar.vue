@@ -91,7 +91,7 @@
 
 <script lang="ts">
 import { Vue, Component, Provide, Watch } from 'vue-property-decorator'
-import { State, Getter, Mutation, Action } from 'vuex-class'
+import { Getter } from 'vuex-class'
 
 @Component({
   components: {}
