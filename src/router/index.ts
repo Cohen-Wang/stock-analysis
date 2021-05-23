@@ -33,6 +33,21 @@ export const asyncRouterMap: Array<RouteConfig> = [
     ]
   },
   {
+    path: '/upload',
+    name: 'upload',
+    component: Layout,
+    meta: { isShow: true },
+    redirect: '/upload/upload-page',
+    children: [
+      {
+        path: '/upload/upload-page',
+        name: 'upload-page',
+        component: () => import('@/views/Upload/UploadPage.vue'),
+        meta: { isShow: true, title: '数据管理', icon: 'database' }
+      }
+    ]
+  },
+  {
     path: '/workspace',
     name: 'workspace',
     component: Layout,
@@ -41,7 +56,7 @@ export const asyncRouterMap: Array<RouteConfig> = [
     children: [
       {
         path: '/workspace/workspace-index',
-        name: 'workspace',
+        name: 'workspace-index',
         component: () => import('@/views/Workspace/WorkspaceIndex.vue'),
         meta: { isShow: true, title: '工作台', icon: 'solution' }
       }
