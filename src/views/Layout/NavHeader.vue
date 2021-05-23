@@ -2,8 +2,13 @@
   <div>
     <div class="flex justify-between padding-lr-sm">
         <!-- 左边 -->
-        <div>
-          <a-button :icon="collapsed ? 'menu-unfold' : 'menu-fold'" @click="setCollapsed"/>
+        <div class="flex">
+          <div class="margin-right">
+            <a-button :icon="collapsed ? 'menu-unfold' : 'menu-fold'" @click="setCollapsed"/>
+          </div>
+          <div>
+            <span class="text-bold text-black text-df">{{ wisdomText }}</span>
+          </div>
         </div>
         <!-- 右边 -->
         <div>
@@ -56,19 +61,19 @@ export default class NavHeader extends Vue {
   @Getter('common/collapsed') collapsed: any
   @Provide() title: string = process.env.VUE_APP_TITLE
   @Provide() version: string = process.env.VUE_APP_VERSION
-  @Provide() duration: number = 5 * 1000
+  @Provide() wisdomText: string = ''
 
   mounted(): void {
-    // this.showWisdomModal()
+    this.wisdomText = (this as any).$constant.wisdom.WISDOM_LIST[~~(Math.random() * (this as any).$constant.wisdom.WISDOM_LIST.length)]
+    this.showWisdomModal()
   }
 
   // 显示跑马灯
   showWisdomModal(): void {
     const _this: any = this
     window.setInterval(() => {
-      const text: string = (this as any).$constant.wisdom.WISDOM_LIST[~~(Math.random() * (this as any).$constant.wisdom.WISDOM_LIST.length)]
-      _this.$refs['WisdomModal'].showModal(text)
-    }, _this.duration)
+      _this.wisdomText = (this as any).$constant.wisdom.WISDOM_LIST[~~(Math.random() * (this as any).$constant.wisdom.WISDOM_LIST.length)]
+    }, 60 * 1000)
   }
 
   // 设置折叠

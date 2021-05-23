@@ -3,13 +3,11 @@
     <div class="border-bottom border-solid border-gray">
       <main-title text="数据管理"/>
     </div>
-    <div>
-      <a-upload-dragger
-              name="file"
-              :multiple="true"
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              @change="handleChange"
-      >
+    <div class="padding-lr-lg padding-tb border-bottom border-solid border-gray">
+      <a-upload-dragger name="file"
+                        :multiple="true"
+                        action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                        @change="handleChange">
         <p class="ant-upload-drag-icon">
           <a-icon type="inbox" />
         </p>
@@ -21,6 +19,35 @@
           band files
         </p>
       </a-upload-dragger>
+    </div>
+    <!-- 数据展示 -->
+    <div>
+      <a-row>
+        <a-col :span="8">
+          <div class="border-rb border-solid border-gray">
+            <main-title text="股票数据"/>
+          </div>
+          <div class="padding-lr-lg padding-tb border-rb border-solid border-gray">
+            <pre v-text="123"/>
+          </div>
+        </a-col>
+        <a-col :span="8">
+          <div class="border-rb border-solid border-gray">
+            <main-title text="事件数据"/>
+          </div>
+          <div class="padding-lr-lg padding-tb border-rb border-solid border-gray">
+            <pre v-text="123"/>
+          </div>
+        </a-col>
+        <a-col :span="8">
+          <div class="border-rb border-solid border-gray">
+            <main-title text="关注股票"/>
+          </div>
+          <div class="padding-lr-lg padding-tb border-rb border-solid border-gray">
+            <pre v-text="123"/>
+          </div>
+        </a-col>
+      </a-row>
     </div>
   </div>
 </template>
