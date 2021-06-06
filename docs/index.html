@@ -1,1 +1,197 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/stock-analysis/favicon.ico"><title>分析管理平台</title><link href="/stock-analysis/css/chunk-1afbbb08.36ec42d3.css" rel="prefetch"><link href="/stock-analysis/css/chunk-1d2b79be.b5e6b9a4.css" rel="prefetch"><link href="/stock-analysis/css/chunk-267abd69.17134c8b.css" rel="prefetch"><link href="/stock-analysis/css/chunk-48613131.100ab9d6.css" rel="prefetch"><link href="/stock-analysis/css/chunk-48f6cc54.43302353.css" rel="prefetch"><link href="/stock-analysis/css/chunk-510acaf2.8caa31d2.css" rel="prefetch"><link href="/stock-analysis/css/chunk-521d3162.8d5cfeb5.css" rel="prefetch"><link href="/stock-analysis/css/chunk-55938ce3.b5e6b9a4.css" rel="prefetch"><link href="/stock-analysis/css/chunk-636ea058.37041cdd.css" rel="prefetch"><link href="/stock-analysis/css/chunk-6ba1478e.929f6a09.css" rel="prefetch"><link href="/stock-analysis/css/chunk-75125764.5d1b3ee6.css" rel="prefetch"><link href="/stock-analysis/css/chunk-7fc9aef4.0e73a038.css" rel="prefetch"><link href="/stock-analysis/css/chunk-9337bde4.c7c55e35.css" rel="prefetch"><link href="/stock-analysis/css/chunk-b86f5a34.e4b0573c.css" rel="prefetch"><link href="/stock-analysis/css/chunk-d22ec044.6d236854.css" rel="prefetch"><link href="/stock-analysis/css/chunk-f72117f4.a686bc3f.css" rel="prefetch"><link href="/stock-analysis/js/chunk-1afbbb08.ef8b4ca1.js" rel="prefetch"><link href="/stock-analysis/js/chunk-1d2b79be.c56ee897.js" rel="prefetch"><link href="/stock-analysis/js/chunk-267abd69.f535a331.js" rel="prefetch"><link href="/stock-analysis/js/chunk-2d20fe7d.7c1aec84.js" rel="prefetch"><link href="/stock-analysis/js/chunk-48613131.d155d878.js" rel="prefetch"><link href="/stock-analysis/js/chunk-489c8356.a2e22d0a.js" rel="prefetch"><link href="/stock-analysis/js/chunk-48f6cc54.d354a11a.js" rel="prefetch"><link href="/stock-analysis/js/chunk-510acaf2.355bf084.js" rel="prefetch"><link href="/stock-analysis/js/chunk-521d3162.271e6e54.js" rel="prefetch"><link href="/stock-analysis/js/chunk-55938ce3.0cfd1101.js" rel="prefetch"><link href="/stock-analysis/js/chunk-636ea058.4f06247e.js" rel="prefetch"><link href="/stock-analysis/js/chunk-6ba1478e.36ec0fc4.js" rel="prefetch"><link href="/stock-analysis/js/chunk-75125764.67d6bf67.js" rel="prefetch"><link href="/stock-analysis/js/chunk-7fc9aef4.349a1a53.js" rel="prefetch"><link href="/stock-analysis/js/chunk-9337bde4.2c17d1ff.js" rel="prefetch"><link href="/stock-analysis/js/chunk-b86f5a34.373e9f0a.js" rel="prefetch"><link href="/stock-analysis/js/chunk-d22ec044.76e2b51c.js" rel="prefetch"><link href="/stock-analysis/js/chunk-de755e54.f99bae00.js" rel="prefetch"><link href="/stock-analysis/js/chunk-f72117f4.0f99fa99.js" rel="prefetch"><link href="/stock-analysis/css/app.f9d484c4.css" rel="preload" as="style"><link href="/stock-analysis/css/chunk-vendors.fe79aa92.css" rel="preload" as="style"><link href="/stock-analysis/js/app.78e71b3c.js" rel="preload" as="script"><link href="/stock-analysis/js/chunk-vendors.c9b5bbe9.js" rel="preload" as="script"><link href="/stock-analysis/css/chunk-vendors.fe79aa92.css" rel="stylesheet"><link href="/stock-analysis/css/app.f9d484c4.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but 分析管理平台 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="/stock-analysis/js/chunk-vendors.c9b5bbe9.js"></script><script src="/stock-analysis/js/app.78e71b3c.js"></script></body></html>
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/stock-analysis/favicon.ico"><title>分析管理平台</title><style>#loader-wrapper {position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 999999;}
+      #loader {
+        display: block;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        width: 120px;
+        height: 120px;
+        margin: -75px 0 0 -75px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        /* COLOR 1 */
+        border-top-color: #FFF;
+        -webkit-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -moz-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 2s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 2s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+        z-index: 1001;
+      }
+
+      #loader:before {
+        content: "";
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        /* COLOR 2 */
+        border-top-color: #FFF;
+        -webkit-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -moz-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 3s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 3s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+      }
+
+      #loader:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-top-color: #FFF;
+        /* COLOR 3 */
+        -moz-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -o-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -ms-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        -webkit-animation: spin 1.5s linear infinite;
+        /* Chrome, Opera 15+, Safari 5+ */
+        animation: spin 1.5s linear infinite;
+        /* Chrome, Firefox 16+, IE 10+, Opera */
+      }
+
+      @-webkit-keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);
+          /* IE 9 */
+          transform: rotate(0deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);
+          /* IE 9 */
+          transform: rotate(360deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+      }
+
+      @keyframes spin {
+        0% {
+          -webkit-transform: rotate(0deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(0deg);
+          /* IE 9 */
+          transform: rotate(0deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+
+        100% {
+          -webkit-transform: rotate(360deg);
+          /* Chrome, Opera 15+, Safari 3.1+ */
+          -ms-transform: rotate(360deg);
+          /* IE 9 */
+          transform: rotate(360deg);
+          /* Firefox 16+, IE 10+, Opera */
+        }
+      }
+
+      #loader-wrapper .loader-section {
+        position: fixed;
+        top: 0;
+        width: 51%;
+        height: 100%;
+        background: #49a9ee;
+        /* Old browsers */
+        z-index: 1000;
+        -webkit-transform: translateX(0);
+        /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateX(0);
+        /* IE 9 */
+        transform: translateX(0);
+        /* Firefox 16+, IE 10+, Opera */
+      }
+
+      #loader-wrapper .loader-section.section-left {
+        left: 0;
+      }
+
+      #loader-wrapper .loader-section.section-right {
+        right: 0;
+      }
+
+      /* Loaded */
+      .loaded #loader-wrapper .loader-section.section-left {
+        -webkit-transform: translateX(-100%);
+        /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateX(-100%);
+        /* IE 9 */
+        transform: translateX(-100%);
+        /* Firefox 16+, IE 10+, Opera */
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      }
+
+      .loaded #loader-wrapper .loader-section.section-right {
+        -webkit-transform: translateX(100%);
+        /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateX(100%);
+        /* IE 9 */
+        transform: translateX(100%);
+        /* Firefox 16+, IE 10+, Opera */
+        -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+        transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      }
+
+      .loaded #loader {
+        opacity: 0;
+        -webkit-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+      }
+
+      .loaded #loader-wrapper {
+        visibility: hidden;
+        -webkit-transform: translateY(-100%);
+        /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);
+        /* IE 9 */
+        transform: translateY(-100%);
+        /* Firefox 16+, IE 10+, Opera */
+        -webkit-transition: all 0.3s 1s ease-out;
+        transition: all 0.3s 1s ease-out;
+      }
+
+      #loader-wrapper .load_title {
+        font-family: 'Open Sans';
+        color: #FFF;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+        z-index: 9999999999999;
+        position: absolute;
+        top: 60%;
+        opacity: 1;
+        line-height: 30px;
+      }
+
+      #loader-wrapper .load_title span {
+        font-weight: normal;
+        font-style: italic;
+        font-size: 14px;
+        color: #FFF;
+        opacity: 0.5;
+      }</style><link href="/stock-analysis/css/chunk-02de7912.dee745a2.css" rel="prefetch"><link href="/stock-analysis/css/chunk-043e388d.d76d3c7b.css" rel="prefetch"><link href="/stock-analysis/css/chunk-1a5c01fc.8caa31d2.css" rel="prefetch"><link href="/stock-analysis/css/chunk-1afbbb08.36ec42d3.css" rel="prefetch"><link href="/stock-analysis/css/chunk-1ed6e9bb.0418750c.css" rel="prefetch"><link href="/stock-analysis/css/chunk-267abd69.17134c8b.css" rel="prefetch"><link href="/stock-analysis/css/chunk-29b34a59.5b71e1c0.css" rel="prefetch"><link href="/stock-analysis/css/chunk-36ab990b.b4381e84.css" rel="prefetch"><link href="/stock-analysis/css/chunk-48613131.100ab9d6.css" rel="prefetch"><link href="/stock-analysis/css/chunk-557bb128.77561ae9.css" rel="prefetch"><link href="/stock-analysis/css/chunk-636ea058.37041cdd.css" rel="prefetch"><link href="/stock-analysis/css/chunk-652839f8.9575dde4.css" rel="prefetch"><link href="/stock-analysis/css/chunk-6b133426.dee745a2.css" rel="prefetch"><link href="/stock-analysis/css/chunk-75125764.5d1b3ee6.css" rel="prefetch"><link href="/stock-analysis/css/chunk-9337bde4.c7c55e35.css" rel="prefetch"><link href="/stock-analysis/css/chunk-b86f5a34.e4b0573c.css" rel="prefetch"><link href="/stock-analysis/css/chunk-f72117f4.a686bc3f.css" rel="prefetch"><link href="/stock-analysis/js/chunk-02de7912.8b77cb1a.js" rel="prefetch"><link href="/stock-analysis/js/chunk-043e388d.92779eb7.js" rel="prefetch"><link href="/stock-analysis/js/chunk-1a5c01fc.517f028e.js" rel="prefetch"><link href="/stock-analysis/js/chunk-1afbbb08.8889539e.js" rel="prefetch"><link href="/stock-analysis/js/chunk-1ed6e9bb.82e1cec2.js" rel="prefetch"><link href="/stock-analysis/js/chunk-267abd69.a664be15.js" rel="prefetch"><link href="/stock-analysis/js/chunk-29b34a59.d54335a8.js" rel="prefetch"><link href="/stock-analysis/js/chunk-2d20fe7d.b2a3fcaf.js" rel="prefetch"><link href="/stock-analysis/js/chunk-36ab990b.a659359f.js" rel="prefetch"><link href="/stock-analysis/js/chunk-48613131.2ced471b.js" rel="prefetch"><link href="/stock-analysis/js/chunk-489c8356.b9d4c0c2.js" rel="prefetch"><link href="/stock-analysis/js/chunk-557bb128.9661be97.js" rel="prefetch"><link href="/stock-analysis/js/chunk-636ea058.7fa9cd58.js" rel="prefetch"><link href="/stock-analysis/js/chunk-652839f8.cf2c86b1.js" rel="prefetch"><link href="/stock-analysis/js/chunk-6b133426.8adfba73.js" rel="prefetch"><link href="/stock-analysis/js/chunk-75125764.5b0ba589.js" rel="prefetch"><link href="/stock-analysis/js/chunk-9337bde4.10934b1f.js" rel="prefetch"><link href="/stock-analysis/js/chunk-b86f5a34.2120fd8e.js" rel="prefetch"><link href="/stock-analysis/js/chunk-de755e54.f99bae00.js" rel="prefetch"><link href="/stock-analysis/js/chunk-f72117f4.57f68345.js" rel="prefetch"><link href="/stock-analysis/css/app.05ed56c6.css" rel="preload" as="style"><link href="/stock-analysis/css/chunk-vendors.fe79aa92.css" rel="preload" as="style"><link href="/stock-analysis/js/app.94849bd4.js" rel="preload" as="script"><link href="/stock-analysis/js/chunk-vendors.5220433f.js" rel="preload" as="script"><link href="/stock-analysis/css/chunk-vendors.fe79aa92.css" rel="stylesheet"><link href="/stock-analysis/css/app.05ed56c6.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but 分析管理平台 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"><div id="loader-wrapper"><div id="loader"></div><div class="loader-section section-left"></div><div class="loader-section section-right"></div><div class="load_title">正在加载 分析管理平台,请耐心等待</div></div></div><script src="/stock-analysis/js/chunk-vendors.5220433f.js"></script><script src="/stock-analysis/js/app.94849bd4.js"></script></body></html>
